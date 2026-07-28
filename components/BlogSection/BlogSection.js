@@ -29,8 +29,8 @@ const BlogSection = () => {
         <section className="tp-blog-section section-padding" id="blog">
             <div className="container">
                 <div className="tp-section-title">
-                    <span>Latest Blog</span>
-                    <h2>My Latest News</h2>
+                    <span>Education & Skills</span>
+                    <h2>My Background & Expertise</h2>
                 </div>
                 <div className="tp-blog-items">
                     <div className="row">
@@ -56,14 +56,14 @@ const BlogSection = () => {
                     <div className={`sec-title-btn text-center mt-3 ${buttonActive ? "d-none" : ""}`}>
                         <span onClick={() => setButtonState(!buttonActive)}>
                             <button className="theme-btn" onClick={() => setCount(number + number)}>
-                                View All Blog
+                                View All
                             </button>
                         </span>
                     </div>
                 </div>
             </div>
             <div className="visible-rotate-text">
-                <h1>Latest Blog</h1>
+                <h1>Skills</h1>
             </div>
             <BlogSingle open={open} onClose={handleClose} title={state.title} bImg={state.blogSingleImg} create_at={state.create_at} author={state.author} comment={state.comment} />
         </section>

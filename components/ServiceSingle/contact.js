@@ -9,8 +9,12 @@ const Contact = () => {
         name: '',
         email: '',
         subject: '',
-        message: ''
+        message: '',
+        _honey: '',
     });
+    const [isSending, setIsSending] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null);
+    const [, forceUpdate] = useState(0);
     const [validator] = useState(new SimpleReactValidator({
         className: 'errorMessage'
     }));
@@ -23,18 +27,50 @@ const Contact = () => {
         }
     };
 
-    const submitHandler = e => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        if (validator.allValid()) {
-            validator.hideMessages();
-            setForms({
-                name: '',
-                email: '',
-                subject: '',
-                message: ''
-            })
-        } else {
+        setSubmitStatus(null);
+
+        if (!validator.allValid()) {
             validator.showMessages();
+            forceUpdate((x) => x + 1);
+            return;
+        }
+
+        validator.hideMessages();
+        setIsSending(true);
+
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: forms.name,
+                    email: forms.email,
+                    subject: forms.subject,
+                    message: forms.message,
+                    _honey: forms._honey,
+                }),
+            });
+
+            const data = await res.json().catch(() => ({}));
+
+            if (res.ok && data.ok) {
+                setSubmitStatus({ type: 'success', message: 'Message sent successfully.' });
+                setForms({
+                    name: '',
+                    email: '',
+                    subject: '',
+                    message: '',
+                    _honey: '',
+                });
+            } else {
+                setSubmitStatus({ type: 'error', message: data.error || 'Failed to send message.' });
+            }
+        } catch (err) {
+            setSubmitStatus({ type: 'error', message: 'Failed to send message.' });
+        } finally {
+            setIsSending(false);
         }
     };
 
@@ -97,8 +133,26 @@ const Contact = () => {
                     {validator.message('message', forms.message, 'required')}
                 </div>
             </div>
+            {/* Honeypot anti-spam field (keep hidden) */}
+            <input
+                type="text"
+                name="_honey"
+                value={forms._honey}
+                onChange={(e) => changeHandler(e)}
+                style={{ display: 'none' }}
+                tabIndex="-1"
+                autoComplete="off"
+            />
             <div className="submit-area">
-                <button type="submit" className="theme-btn-s2"> Submit Now</button>
+                <button type="submit" className="theme-btn-s2" disabled={isSending}>
+                    {isSending ? 'Sending...' : 'Submit Now'}
+                </button>
+                {submitStatus?.type === 'success' && (
+                    <p style={{ marginTop: 10, color: '#2e7d32' }}>{submitStatus.message}</p>
+                )}
+                {submitStatus?.type === 'error' && (
+                    <p style={{ marginTop: 10, color: '#d32f2f' }}>{submitStatus.message}</p>
+                )}
             </div>
         </form>
     )

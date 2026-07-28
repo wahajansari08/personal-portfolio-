@@ -21,11 +21,11 @@ const menus = [
     {
         id: 4,
         title: 'Portfolio',
-        link: 'portfolio',
+        link: 'project',
     },
     {
         id: 5,
-        title: 'Blog',
+        title: 'Skills',
         link: 'blog',
     },
     {

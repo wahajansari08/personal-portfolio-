@@ -11,36 +11,36 @@ const Pricing = (props) => {
 
     const pricing = [
         {
-            rate: '120',
-            des: 'Consectetur adipiscing elit. Purusout phasellus.',
-            li1: 'Web App design',
-            li2: 'Software Development',
-            li3: '3D Animation Add',
-            li4: 'Graphic Design',
-            li5: 'Web Development',
-            title: 'Basic',
+            rate: '150',
+            des: 'Perfect for small business websites and landing pages.',
+            li1: 'Responsive HTML/CSS design',
+            li2: 'WordPress setup & customization',
+            li3: 'Basic on-page SEO',
+            li4: 'Contact form integration',
+            li5: 'Mobile-friendly layout',
+            title: 'Starter',
             link: '/home',
         },
         {
-            rate: '210',
-            des: 'Consectetur adipiscing elit. Purusout phasellus.',
-            li1: 'Web App design',
-            li2: 'Software Development',
-            li3: '3D Animation Add',
-            li4: 'Graphic Design',
-            li5: 'Web Development',
-            title: 'Premium',
+            rate: '300',
+            des: 'Ideal for CMS websites and e-commerce stores.',
+            li1: 'WordPress / Shopify development',
+            li2: 'Custom theme & plugin work',
+            li3: 'Full SEO optimization',
+            li4: 'Elementor / WP Bakery setup',
+            li5: 'Performance optimization',
+            title: 'Professional',
             link: '/home',
         },
         {
-            rate: '373',
-            des: 'Consectetur adipiscing elit. Purusout phasellus.',
-            li1: 'Web App design',
-            li2: 'Software Development',
-            li3: '3D Animation Add',
-            li4: 'Graphic Design',
-            li5: 'Web Development',
-            title: 'Advanced',
+            rate: '500',
+            des: 'For custom web apps and advanced Next.js projects.',
+            li1: 'Next.js / React development',
+            li2: 'API integration & Redux state',
+            li3: 'Technical SEO audit',
+            li4: 'Figma to code conversion',
+            li5: 'Ongoing support & maintenance',
+            title: 'Enterprise',
             link: '/home',
         },
 
@@ -52,8 +52,8 @@ const Pricing = (props) => {
         <section className="tp-pricing-section section-padding">
             <div className="container">
                 <div className="tp-section-title">
-                    <span>Pricing</span>
-                    <h2>My Pricing Plan</h2>
+                    <span>Services</span>
+                    <h2>What I Offer</h2>
                 </div>
                 <div className="tp-pricing-wrap">
                     <div className="row">
@@ -65,7 +65,7 @@ const Pricing = (props) => {
                                             <span>{pricing.title}</span>
                                         </div>
                                         <div className="tp-pricing-text">
-                                            <h2>${pricing.rate}<span>/per month</span></h2>
+                                            <h2>${pricing.rate}<span>/starting from</span></h2>
                                             <p>{pricing.des}</p>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@ const Pricing = (props) => {
                                                 <li>{pricing.li5}</li>
                                                 <li>{pricing.li4}</li>
                                             </ul>
-                                            <Link onClick={ClickHandler} href={pricing.link}>Choose Plan</Link>
+                                            <Link onClick={ClickHandler} href={pricing.link}>Get Started</Link>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@ const Pricing = (props) => {
                 </div>
             </div>
             <div className="visible-rotate-text">
-                <h1>My Pricing</h1>
+                <h1>Services</h1>
             </div>
         </section>
     )

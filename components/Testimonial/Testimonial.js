@@ -4,29 +4,36 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
-
-
-
 const Testimonials = [
     {
-        name: 'Elezabeth Marvel',
-        title: 'Photographer',
-        descriptoion: '“To identify key portfolio features, varied styles, and organizational schemes; to begin to identify aspects of students’ own portfolios that will need careful attention.”',
+        name: 'Sarah Mitchell',
+        title: 'Project Manager, Cognitive IT Solutions',
+        descriptoion: '"Wahaj is an outstanding Next.js developer. He helped us monetize WordPress sites and build scalable web apps that exceeded our client expectations. Highly reliable and detail-oriented."',
     },
     {
-        name: 'Marry Jenefer',
-        title: 'CEO Of Golden Bravo',
-        descriptoion: '“That will need careful attention To begin to identify aspects of students’ own portfolios To identify key portfolio features, varied styles, and organizational schemes.”',
+        name: 'James Carter',
+        title: 'Director, MarediaSoft',
+        descriptoion: '"We worked with Wahaj on WordPress, Shopify, and Wix projects. He handled diverse client requirements with ease and always delivered polished, on-brand websites on time."',
     },
     {
-        name: 'Elezabeth Marvel',
-        title: 'Photographer',
-        descriptoion: '“Varied styles, and organizational schemes; to begin to identify aspects of students’ own portfolios To identify key portfolio features, that will need careful attention.”',
+        name: 'Fatima Rizvi',
+        title: 'Team Lead, Intersys / Abtach Limited',
+        descriptoion: '"Wahaj collaborated seamlessly with our sales, design, and animation teams. His CMS development skills and attention to revisions made every project a smooth experience."',
     },
     {
-        name: 'Marry Jenefer',
-        title: 'CEO Of Golden Bravo',
-        descriptoion: '“To begin to identify aspects of students’ own portfolios To identify key portfolio features, varied styles, and organizational schemes; that will need careful attention.”',
+        name: 'David Robertson',
+        title: 'Founder, Webbgenie LTD',
+        descriptoion: '"Beyond development, Wahaj brought strong SEO expertise that noticeably improved our clients\' organic traffic. A true full-stack professional who understands business goals."',
+    },
+    {
+        name: 'Ali Hassan',
+        title: 'CEO, ePAGING Pvt. LTD',
+        descriptoion: '"From WordPress builds to HTML sites and SEO optimization, Wahaj proved himself as a versatile developer. Our clients were always satisfied with the quality of his work."',
+    },
+    {
+        name: 'Zainab Malik',
+        title: 'Marketing Head, Nexosol',
+        descriptoion: '"Even as an intern, Wahaj showed great initiative in WordPress, post design, and SEO. It was clear early on that he had the drive and skills to become an excellent developer."',
     },
 ]
 
@@ -86,7 +93,7 @@ const Testimonial = () => {
             <div className="container">
                 <div className="tp-section-title">
                     <span>Testimonials</span>
-                    <h2>What My clients say.</h2>
+                    <h2>What My Clients Say</h2>
                 </div>
 
                 <div className="tp-testimonial-wrap">
@@ -96,6 +103,7 @@ const Testimonial = () => {
                                 <div className="tp-testimonial-text">
                                     <p>{tstml.descriptoion}</p>
                                     <span>{tstml.name}</span>
+                                    <small>{tstml.title}</small>
                                 </div>
                             </div>
                         ))}

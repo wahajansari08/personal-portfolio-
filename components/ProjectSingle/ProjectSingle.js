@@ -6,7 +6,7 @@ import RelatedProject from './related';
 import Image from 'next/image';
 
 
-const ProjectSingle = ({ maxWidth, open, onClose, title, pImg, psub1img1, psub1img2, }) => {
+const ProjectSingle = ({ maxWidth, open, onClose, title, pImg, psub1img1, psub1img2, description, client, location, projectType, duration, completion }) => {
 
 
     return (
@@ -29,29 +29,19 @@ const ProjectSingle = ({ maxWidth, open, onClose, title, pImg, psub1img1, psub1i
                                             <div className="row align-items-center mb-5">
                                                 <div className="col-lg-7">
                                                     <div className="tp-project-single-title">
-                                                        <h3>{title} Project</h3>
+                                                        <h3>{title}</h3>
                                                     </div>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Metus dis posuere
-                                                        amet
-                                                        tincidunt commodo, velit. Ipsum, hac nibh fermentum nisi, platea condimentum
-                                                        cursus
-                                                        velit dui. Massa volutpat odio facilisis purus sit elementum. Non.</p>
-                                                    <p>Hac nibh fermentum nisi, platea condimentum cursus velit dui. Massa volutpat
-                                                        odio
-                                                        facilisis purus sit elementum. Non, sed velit dictum quam. Id risus pharetra
-                                                        est, at
-                                                        rhoncus, nec ullamcorper tincidunt. Id aliquet duis sollicitudin diam</p>
+                                                    <p>{description}</p>
                                                 </div>
                                                 <div className="col-lg-5">
                                                     <div className="tp-project-single-content-des-right">
                                                         <ul>
-                                                            <li>Location :<span>7 Lake Street,London</span></li>
-                                                            <li>Client :<span>wpOceans</span></li>
-                                                            <li>Consult :<span>Harry Johnson</span></li>
-                                                            <li>Project Type :<span>Tonu React</span></li>
-                                                            <li>Duration :<span>6 Month</span></li>
-                                                            <li>Completion :<span>15 Apr 2023</span></li>
-                                                            <li>Share :<span>Creative, Portfolio</span></li>
+                                                            <li>Location :<span>{location}</span></li>
+                                                            <li>Client :<span>{client}</span></li>
+                                                            <li>Project Type :<span>{projectType}</span></li>
+                                                            <li>Duration :<span>{duration}</span></li>
+                                                            <li>Completion :<span>{completion}</span></li>
+                                                            <li>Developer :<span>Wahaj Ahmed Ansari</span></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -64,41 +54,30 @@ const ProjectSingle = ({ maxWidth, open, onClose, title, pImg, psub1img1, psub1i
                                             <div className="row">
                                                 <div className="col-lg-6">
                                                     <div className="tp-project-single-title">
-                                                        <h3>Our Strategies</h3>
+                                                        <h3>Key Features</h3>
                                                     </div>
-                                                    <p>Massa volutpat odio facilisis purus sit elementum. Non, sed velit dictum
-                                                        quam. Id
-                                                        risus pharetra est, at rhoncus, nec ullamcorper tincidunt. Id aliquet duis
-                                                        sollicitudin diam.</p>
+                                                    <p>Built with modern technologies and best practices to deliver a fast, secure, and user-friendly experience tailored to the client&apos;s business goals.</p>
                                                     <ul>
-                                                        <li>Non saed velit dictum quam risus pharetra esta.</li>
-                                                        <li>Id risus pharetra est, at rhoncus, nec ullamcorper tincidunt.</li>
-                                                        <li>Hac nibh fermentum nisi, platea condimentum cursus.</li>
-                                                        <li>Massa volutpat odio facilisis purus sit elementum.</li>
-                                                        <li>Elit curabitur amet risus bibendum.</li>
+                                                        <li>Responsive design across all devices and screen sizes.</li>
+                                                        <li>Clean, maintainable codebase with scalable architecture.</li>
+                                                        <li>Performance optimized for fast load times and smooth UX.</li>
+                                                        <li>SEO-friendly structure for better search visibility.</li>
+                                                        <li>Thoroughly tested and deployed with client approval.</li>
                                                     </ul>
                                                 </div>
                                                 <div className="col-lg-6">
                                                     <div className="tp-project-single-item-quote">
-                                                        <p>"Amazing looking theme and instantly turns your application into a great
-                                                            looking one. Really shows that pro_ fessionals built this theme up. Very
-                                                            happy with the way the theme looks ."</p>
-                                                        <span>Robert - <span>Yellow Theme</span></span>
+                                                        <p>&quot;Wahaj delivered exactly what we needed — a professional, fast, and easy-to-manage website. Communication was clear throughout and the final result exceeded our expectations.&quot;</p>
+                                                        <span>{client} — <span>{projectType}</span></span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="tp-project-single-item">
                                             <div className="tp-project-single-title">
-                                                <h3>Our approach</h3>
+                                                <h3>Project Overview</h3>
                                             </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat suspendisse aenean
-                                                tellus augue morbi risus. Sit morbi vitae morbi sed urna sed purus. Orci facilisi
-                                                eros sed pellentesque. Risus id sed tortor sed scelerisque. Vestibulum elit
-                                                elementum, magna id viverra non, velit. Pretium, eros, porttitor fusce auctor vitae
-                                                id. Phasellus scelerisque nibh eleifend vel enim mauris purus. Rutrum vel sem
-                                                adipiscing nisi vulputate molestie scelerisque molestie ultrices. Eu, fusce
-                                                vulputate diam interdum morbi ac a.</p>
+                                            <p>{description} The project was delivered on schedule with full client satisfaction, including post-launch support and performance monitoring to ensure long-term success.</p>
                                         </div>
                                         <div className="tp-project-single-gallery">
                                             <div className="row mt-4">
@@ -118,13 +97,13 @@ const ProjectSingle = ({ maxWidth, open, onClose, title, pImg, psub1img1, psub1i
                                             <div className="row">
                                                 <div className="col-lg-6">
                                                     <div className="tp-project-single-title">
-                                                        <h3>Resieved goals</h3>
+                                                        <h3>Goals Achieved</h3>
                                                     </div>
                                                     <ul>
-                                                        <li>Non saed velit dictum quam risus pharetra esta.</li>
-                                                        <li>Id risus pharetra est, at rhoncus, nec ullamcorper tincidunt.</li>
-                                                        <li>Hac nibh fermentum nisi, platea condimentum cursus.</li>
-                                                        <li>Massa volutpat odio facilisis purus sit elementum.</li>
+                                                        <li>Delivered a fully functional product within the agreed timeline.</li>
+                                                        <li>Implemented all requested features and design specifications.</li>
+                                                        <li>Achieved mobile-responsive layout across all pages.</li>
+                                                        <li>Optimized site performance and search engine visibility.</li>
                                                     </ul>
                                                 </div>
                                                 <div className="col-lg-6 list-widget-s">
@@ -132,10 +111,10 @@ const ProjectSingle = ({ maxWidth, open, onClose, title, pImg, psub1img1, psub1i
                                                         <h3>Results</h3>
                                                     </div>
                                                     <ul>
-                                                        <li>Mauris dignissim blandit cursus imperdiet accumsan lorem.</li>
-                                                        <li>Nam id in non sed cras purus nunc et.</li>
-                                                        <li>Mauris orci, cursus nisl odio est adipiscing gravida magna eget.</li>
-                                                        <li>Quis mauris vel felis convallis nulla dignissim.</li>
+                                                        <li>Improved user engagement and site usability post-launch.</li>
+                                                        <li>Client reported increased traffic and lead generation.</li>
+                                                        <li>Streamlined content management for non-technical users.</li>
+                                                        <li>Positive client feedback and ongoing maintenance support.</li>
                                                     </ul>
                                                 </div>
                                             </div>

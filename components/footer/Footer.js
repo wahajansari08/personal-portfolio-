@@ -26,7 +26,7 @@ const Footer = (props) => {
                     </div>
                     <div className="col-12">
                         <div className="copyright">
-                            <p>© 2023. All rights reserved by themepresss.</p>
+                            <p>© 2026. All rights reserved by Wahaj Ahmed Ansari.</p>
                         </div>
                     </div>
                 </div>

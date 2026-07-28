@@ -27,8 +27,8 @@ const ProjectSection = (props) => {
         <section className="tp-project-section section-padding">
             <div className="container">
                 <div className="tp-section-title">
-                    <span>Projects</span>
-                    <h2>My Latest Project</h2>
+                    <span>Portfolio</span>
+                    <h2>My Latest Projects</h2>
                 </div>
                 <div className="tp-project-wrap">
                     <div className="row">
@@ -53,7 +53,20 @@ const ProjectSection = (props) => {
                     </div>
                 </div>
             </div>
-            <ProjectSingle open={open} onClose={handleClose} title={state.title} pImg={state.ps1img} psub1img1={state.psub1img1} psub1img2={state.psub1img2} />
+            <ProjectSingle
+                open={open}
+                onClose={handleClose}
+                title={state.title}
+                pImg={state.ps1img}
+                psub1img1={state.psub1img1}
+                psub1img2={state.psub1img2}
+                description={state.description}
+                client={state.client}
+                location={state.location}
+                projectType={state.projectType}
+                duration={state.duration}
+                completion={state.completion}
+            />
 
             <div className="visible-rotate-text">
                 <h1>My Projects</h1>

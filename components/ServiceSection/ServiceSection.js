@@ -34,8 +34,7 @@ const ServiceSection = (props) => {
                                 <div className="tp-service-item">
                                     <i className={`fi ${service.icon}`}></i>
                                     <h2 onClick={() => handleClickOpen(service)}>{service.sTitle}</h2>
-                                    <p>A wonderful serenity has taken possession of my entire soul, like these sweet
-                                        mornings.</p>
+                                    <p>{service.description}</p>
                                     <button className="read-more" onClick={() => handleClickOpen(service)}>
                                         <i className="fi flaticon-right-arrow"></i>
                                     </button>

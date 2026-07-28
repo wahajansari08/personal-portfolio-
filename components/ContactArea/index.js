@@ -15,7 +15,7 @@ const ContactArea = (props) => {
                 </div>
             </div>
             <div className="visible-rotate-text">
-                <h1>Contat Me</h1>
+                <h1>Contact Me</h1>
             </div>
         </section>
     )
