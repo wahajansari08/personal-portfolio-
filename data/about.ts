@@ -12,14 +12,14 @@ export const aboutData: AboutData = {
   pageTitleAccent: "ME",
   subheading: "Resume",
   description: [
-    "Feel free to get in touch with me. I am always open to discussing new projects, creative ideas or opportunities to be part of your visions.",
+    "Feel free to reach out anytime. I’m always excited to explore new projects, innovative ideas, or opportunities to collaborate and help bring your vision to life. ",
   ],
   image: "/img/img-mobile.jpg",
   stats: [
-    { value: "12", label: "years of experience" },
-    { value: "97", label: "completed projects" },
-    { value: "81", label: "Happy customers" },
-    { value: "53", label: "awards won" },
+    { value: "07", label: "Professional Experience" },
+    { value: "200", label: "completed projects" },
+    { value: "16", label: "Happy Clients" },
+    { value: "03", label: "awards won" },
   ],
   cvLink: "/img/sample.pdf",
 };
@@ -30,79 +30,83 @@ export const personalInfo: {
   right: PersonalInfoEntry[];
 } = {
   left: [
-    { label: "first name", value: "Steve" },
-    { label: "Age", value: "27 Years" },
+    { label: "first name", value: "Wahaj" },
+    { label: "Age", value: "28 Years" },
     { label: "Freelance", value: "Available", emphasis: "available" },
-    { label: "phone", value: "+21621184010" },
-    { label: "Skype", value: "steve.milner" },
+    { label: "phone", value: "+92 316 213 3633" },
+    { label: "LinkedIn", value: "/in/wahajansari08/" },
   ],
   right: [
-    { label: "last name", value: "Milner" },
-    { label: "Nationality", value: "Tunisian" },
-    { label: "Address", value: "Tunis" },
-    { label: "Email", value: "you@mail.com" },
-    { label: "langages", value: "French, English" },
+    { label: "last name", value: "Ansari" },
+    { label: "Nationality", value: "Pakistani" },
+    { label: "Address", value: "Karachi, Pakistan" },
+    { label: "Email", value: "wahajansar08@gmail.com" },
+    { label: "langages", value: "Urdu, English" },
   ],
 };
 
 export const skills: Skill[] = [
-  { name: "html", percentage: 25, category: "technical" },
-  { name: "javascript", percentage: 89, category: "technical" },
+  { name: "html", percentage: 90, category: "technical" },
   { name: "css", percentage: 70, category: "technical" },
-  { name: "php", percentage: 66, category: "technical" },
+  { name: "Tailwind", percentage: 60, category: "technical" },
+  { name: "javascript", percentage: 66, category: "technical" },
+  { name: "php", percentage: 55, category: "technical" },
+  { name: "react", percentage: 65, category: "technical" },
+  { name: "Next", percentage: 67, category: "technical" },
+  { name: "Node", percentage: 50, category: "technical" },
   { name: "wordpress", percentage: 95, category: "technical" },
-  { name: "jquery", percentage: 50, category: "technical" },
-  { name: "angular", percentage: 65, category: "technical" },
-  { name: "react", percentage: 45, category: "technical" },
+  { name: "Shopify", percentage: 75, category: "technical" },
+  { name: "Illustrator/Figma", percentage: 50, category: "technical" },
+  { name: "SEO/SMM", percentage: 50, category: "technical" },
 ];
 
 export const experience: ExperienceItem[] = [
   {
-    role: "Web Developer",
-    company: "Envato",
-    period: "2018 - Present",
+    role: "Frontend Developer",
+    company: "Cognitive IT Solutions",
+    period: "2025 - Present",
     description:
-      "Lorem ipsum dolor sit amet, consectetur tempor incididunt ut labore adipisicing elit",
+      "At Cognitive, working as a Next.js developer, focusing on monetizing WordPress sites, creating new ones, and primarily developing projects using Next.js.",
     current: true,
   },
   {
-    role: "UI/UX Designer",
-    company: "Themeforest",
-    period: "2013 - 2018",
+    role: "CMS Developer",
+    company: "Abtach/Intersys LTD",
+    period: "2024 - 2025",
     description:
-      "Lorem incididunt dolor sit amet, consectetur eiusmod dunt doldunt dol elit, tempor incididunt",
+      "Created websites using WordPress, Shopify, & custom platforms, collaborating with sales, design, and animation teams on revisions and refinements",
     current: false,
   },
   {
-    role: "Consultant",
-    company: "Videohive",
-    period: "2005 - 2013",
+    role: "Web Developer",
+    company: "Web Genie LTD",
+    period: "2022 - 2024",
     description:
-      "Lorem ipsum dolor sit amet, tempor incididunt ut laboreconsectetur elit, sed do eiusmod tempor duntt",
+      "At Webbgenie, I work as a Developer and SEO Specialist, focusing on website development and driving organic traffic through SEO strategies.",
     current: false,
   },
 ];
 
 export const education: EducationItem[] = [
   {
-    degree: "Engineering Degree",
-    institution: "Oxford University",
+    degree: "Bachelors of computer science",
+    institution: "Virtual University of Pakistan",
+    period: "2021 - 2025",
+    description:
+      "Built a strong foundation in computer science, software development, and modern web technologies.",
+  },
+  {
+    degree: "Diploma in CIT",
+    institution: "Aligarh Institute of Techology",
+    period: "2016 - 2018",
+    description:
+      "Completed academic projects that enhanced problem-solving, programming, and teamwork skills.",
+  },
+  {
+    degree: "Matriculation",
+    institution: "BSEK",
     period: "2015",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do tempor incididunt ut labore",
-  },
-  {
-    degree: "Master Degree",
-    institution: "Kiev University",
-    period: "2012",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut adipisicing",
-  },
-  {
-    degree: "Bachelor Degree",
-    institution: "Tunis High School",
-    period: "2009",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor ut labore",
+      "Completed Matriculation with a solid academic foundation in core subjects. Developed discipline, analytical thinking, and a passion for learning.",
   },
 ];

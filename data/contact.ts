@@ -3,19 +3,19 @@ import { ContactInfo } from "@/types";
 export const contactInfo: ContactInfo[] = [
   {
     label: "address point",
-    value: "123 Street New York City, United States Of America 750065.",
+    value: "Block 13b Gulshan Iqbal Karachi, Pakistan",
     icon: "fa-map-marker",
   },
   {
     label: "mail me",
-    value: "steve@mail.com",
+    value: "hello@wahaj.pk",
     icon: "fa-envelope-open",
-    href: "mailto:steve@mail.com",
+    href: "mailto:hello@wahaj.pk",
   },
   {
     label: "call me",
-    value: "+216 21 184 010",
+    value: "+92 316 213 3633",
     icon: "fa-phone-square",
-    href: "tel:+21621184010",
+    href: "tel:+923162133633",
   },
 ];

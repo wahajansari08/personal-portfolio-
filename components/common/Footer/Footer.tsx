@@ -10,8 +10,8 @@ export default function Footer() {
       <FadeInMount delay={0.12}>
       <p>
         Copyright © {year}{" "}
-        <Link href="https://themeforest.net/user/ib-themes" target="_blank">
-          ib-themes.
+        <Link href="https://wahaj.pk" target="_blank">
+          wahaj.pk.
         </Link>{" "}
         All Rights Reserved.
       </p>

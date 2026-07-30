@@ -74,8 +74,8 @@ export default async function RootLayout({
           chrome={
             <>
               <ClientInit />
-              <ThemeToggle />
-              <RtlToggle />
+              {/* <ThemeToggle />
+              <RtlToggle /> */}
               <Navbar />
             </>
           }
