@@ -38,14 +38,14 @@ export default function RootLayout({
   const htmlClass = [poppins.variable, openSans.variable].filter(Boolean).join(" ");
 
   return (
-    <html lang="en" dir="ltr" data-theme="dark" suppressHydrationWarning className={htmlClass}>
+    <html lang="en" dir="ltr" data-theme="light" suppressHydrationWarning className={htmlClass}>
       <head>
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
       </head>
-      <body className="has-default-menu">
+      <body className="has-default-menu light">
         <ClientInit />
         {/* <ThemeToggle /> */}
         <Navbar />
