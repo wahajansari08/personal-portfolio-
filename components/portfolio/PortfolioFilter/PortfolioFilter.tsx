@@ -23,10 +23,10 @@ import type { PortfolioFilterTab, Project } from "@/types";
 
 const FILTER_TABS: { key: PortfolioFilterTab; label: string }[] = [
   { key: "all", label: "ALL" },
-  { key: "logo", label: "LOGO" },
-  { key: "video", label: "VIDEO" },
-  { key: "graphic design", label: "GRAPHIC DESIGN" },
-  { key: "mockup", label: "MOCKUP" },
+  { key: "logo", label: "NEXT JS" },
+  { key: "video", label: "WORDPRESS" },
+  { key: "graphic design", label: "SHOPIFY" },
+  // { key: "mockup", label: "" },
 ];
 
 function ProjectMedia({ project }: { project: Project }): ReactElement {
