@@ -22,11 +22,10 @@ import { projects } from "@/data/projects";
 import type { PortfolioFilterTab, Project } from "@/types";
 
 const FILTER_TABS: { key: PortfolioFilterTab; label: string }[] = [
-  { key: "all", label: "ALL" },
-  { key: "logo", label: "LOGO" },
-  { key: "video", label: "VIDEO" },
-  { key: "graphic design", label: "GRAPHIC DESIGN" },
-  { key: "mockup", label: "MOCKUP" },
+  { key: "all", label: "All" },
+  { key: "nextjs", label: "Next JS" },
+  { key: "wordpress", label: "WordPress" },
+  { key: "shopify", label: "Shopify" },
 ];
 
 function ProjectMedia({ project }: { project: Project }): ReactElement {
@@ -68,6 +67,21 @@ function ProjectMedia({ project }: { project: Project }): ReactElement {
         height={600}
         className="img-fluid"
       />
+    );
+  }
+
+  if (type === "scrollable-image") {
+    return (
+      <div className="popup-scroll-image-wrap">
+        <Image
+          src={project.image}
+          alt={project.title}
+          width={900}
+          height={2400}
+          className="popup-scroll-image"
+          style={{ width: "100%", height: "auto" }}
+        />
+      </div>
     );
   }
 
@@ -428,7 +442,11 @@ export default function PortfolioFilter(): ReactElement {
             {activeProject ? (
               <li key={slideAnimNonce} className="show current">
                 <figure
-                  className={`portfolio-slide-figure portfolio-slide-${slideDirection}`}
+                  className={`portfolio-slide-figure portfolio-slide-${slideDirection} ${
+                    activeProject.projectType === "scrollable-image"
+                      ? "portfolio-slide-scrollable"
+                      : ""
+                  }`}
                 >
                   <SlideshowFigcaption project={activeProject} />
                   <ProjectMedia project={activeProject} />
