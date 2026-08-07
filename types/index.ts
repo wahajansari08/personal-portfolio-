@@ -75,12 +75,11 @@ export interface Service {
 // ─── Projects ────────────────────────────
 export type PortfolioFilterTab =
   | "all"
-  | "logo"
-  | "video"
-  | "graphic design"
-  | "mockup";
+  | "nextjs"
+  | "wordpress"
+  | "shopify";
 
-export type PortfolioProjectType = "image" | "youtube" | "slider" | "local-video";
+export type PortfolioProjectType = "image" | "youtube" | "slider" | "local-video" | "scrollable-image";
 
 export interface Project {
   id: number;

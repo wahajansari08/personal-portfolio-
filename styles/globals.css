@@ -1206,6 +1206,83 @@ body.light.portfolio .portfolio-filter-btn.active::after {
   border-radius: 10px;
 }
 
+/* ── Scrollable-image popup variant ───────────────────────────────────────
+   When a project uses projectType="scrollable-image" the figure switches to
+   a flex column: figcaption is pinned at the top, the image fills the rest
+   and scrolls independently so tall website screenshots can be browsed.
+   The popup <li> is also made taller (85 vh) to give more scroll room.
+────────────────────────────────────────────────────────────────────────── */
+
+/* Taller <li> for scrollable popup */
+.portfolio .slideshow ul > li:has(figure.portfolio-slide-scrollable) {
+  height: 85vh;
+  margin-top: calc(-85vh / 2);
+}
+
+/* Figure becomes flex column */
+.portfolio .slideshow figure.portfolio-slide-scrollable {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden; /* outer container does NOT scroll */
+}
+
+/* Pinned info panel at top */
+.portfolio .slideshow figure.portfolio-slide-scrollable figcaption {
+  flex-shrink: 0;
+  padding: 22px 26px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 0;
+}
+
+/* Scrollable image area fills remaining height */
+.popup-scroll-image-wrap {
+  flex: 1 1 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  /* thin custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 180, 0, 0.6) rgba(255, 255, 255, 0.06);
+}
+
+.popup-scroll-image-wrap::-webkit-scrollbar {
+  width: 6px;
+}
+
+.popup-scroll-image-wrap::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 3px;
+}
+
+.popup-scroll-image-wrap::-webkit-scrollbar-thumb {
+  background: rgba(255, 180, 0, 0.6);
+  border-radius: 3px;
+}
+
+.popup-scroll-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Light theme overrides for scrollable popup */
+body.light.portfolio .slideshow figure.portfolio-slide-scrollable figcaption {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light .popup-scroll-image-wrap {
+  scrollbar-color: rgba(255, 180, 0, 0.7) rgba(0, 0, 0, 0.06);
+}
+
+body.light .popup-scroll-image-wrap::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+body.light .popup-scroll-image-wrap::-webkit-scrollbar-thumb {
+  background: rgba(200, 140, 0, 0.7);
+}
+
 @keyframes portfolioSlideInNext {
   from {
     opacity: 0;
@@ -2140,6 +2217,17 @@ body.light.contact .contactform.contact-form-panel textarea::placeholder {
     border-radius: 0;
     max-width: 720px;
     margin: 0 auto;
+  }
+
+  /* Scrollable-image: on mobile the figure fills full height, so flex layout
+     already works. Just reset padding so figcaption sits under the nav bar. */
+  .portfolio .slideshow figure.portfolio-slide-scrollable {
+    padding: 0;
+    max-width: 100%;
+  }
+
+  .portfolio .slideshow figure.portfolio-slide-scrollable figcaption {
+    padding: 125px 26px 14px;
   }
 
   .portfolio .slideshow nav span.nav-prev,
