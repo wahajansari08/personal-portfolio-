@@ -6,11 +6,11 @@ export const useTheme = (): {
   theme: Theme;
   toggleTheme: () => void;
 } => {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
     const stored = localStorage.getItem("portfolio-theme") as Theme | null;
-    const initial: Theme = stored ?? "dark";
+    const initial: Theme = "light";
     const id = requestAnimationFrame(() => {
       setTheme(initial);
       document.documentElement.setAttribute("data-theme", initial);
