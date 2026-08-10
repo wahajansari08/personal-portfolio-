@@ -3,7 +3,7 @@ import BlogGrid from "@/components/blog/BlogGrid/BlogGrid";
 import { Reveal } from "@/components/motion";
 
 export const metadata: Metadata = {
-  title: "Blog | Portfolio Name",
+  title: "Blog | Wahaj Ansari",
   description: "Blog — articles and notes.",
 };
 

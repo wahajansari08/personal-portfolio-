@@ -6,7 +6,7 @@ import Education from "@/components/about/Education/Education";
 import { Reveal } from "@/components/motion";
 
 export const metadata: Metadata = {
-  title: "About | Portfolio Name",
+  title: "About | Wahaj Ansari",
   description: "About me — background, skills, experience, and education.",
 };
 

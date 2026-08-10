@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection/HeroSection";
 
 export const metadata: Metadata = {
-  title: "Home | Portfolio Name",
+  title: "Home | Wahaj Ansari",
   description: "Welcome — developer and creative portfolio home.",
 };
 
