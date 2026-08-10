@@ -57,7 +57,7 @@ export const skills: Skill[] = [
   { name: "wordpress", percentage: 95, category: "technical" },
   { name: "Shopify", percentage: 75, category: "technical" },
   { name: "Illustrator/Figma", percentage: 50, category: "technical" },
-  { name: "SEO/SMM", percentage: 50, category: "technical" },
+  { name: "On/Off Page SEO", percentage: 50, category: "technical" },
 ];
 
 export const experience: ExperienceItem[] = [
