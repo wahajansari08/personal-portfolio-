@@ -13,7 +13,7 @@ export default function Footer() {
         <Link href="https://wahaj.pk" target="_blank">
           wahaj.pk.
         </Link>{" "}
-        All Rights Reserved.
+        Some Rights Reserved.
       </p>
       </FadeInMount>
     </footer>

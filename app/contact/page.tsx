@@ -4,7 +4,7 @@ import ContactInfo from "@/components/contact/ContactInfo/ContactInfo";
 import { Reveal } from "@/components/motion";
 
 export const metadata: Metadata = {
-  title: "Contact | Portfolio Name",
+  title: "Contact | Wahaj Ansari",
   description: "Get in touch with me",
 };
 

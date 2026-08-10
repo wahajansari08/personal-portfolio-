@@ -7,7 +7,7 @@ export default function ContactInfo() {
   return (
     <Reveal className="col-12 col-lg-5 contact-sidebar" delay={0.05}>
       <h3 className="text-uppercase contact-sidebar__title ft-wt-600 mb-0 pb-3">
-        Don&apos;t be shy !
+        ThankS for Visiting My Profile
       </h3>
       <p className="open-sans-font contact-sidebar__intro mb-0">
         Feel free to get in touch with me. I am always open to discussing new

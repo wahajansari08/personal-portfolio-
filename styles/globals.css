@@ -2497,7 +2497,7 @@ body.light.contact .contactform.contact-form-panel textarea::placeholder {
   background: #202020;
   width: 100%;
   height: 50px;
-  position: fixed;
+  /* position: fixed; */
   bottom: 0;
   display: flex;
   align-items: center;
