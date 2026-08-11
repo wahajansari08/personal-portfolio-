@@ -40,7 +40,7 @@ export const personalInfo: {
     { label: "last name", value: "Ansari" },
     { label: "Nationality", value: "Pakistani" },
     { label: "Address", value: "Karachi, Pakistan" },
-    { label: "Email", value: "wahajansar08@gmail.com" },
+    { label: "Email", value: "wahajansari08@gmail.com" },
     { label: "langages", value: "Urdu, English" },
   ],
 };
@@ -57,7 +57,7 @@ export const skills: Skill[] = [
   { name: "wordpress", percentage: 95, category: "technical" },
   { name: "Shopify", percentage: 75, category: "technical" },
   { name: "Illustrator/Figma", percentage: 50, category: "technical" },
-  { name: "SEO/SMM", percentage: 50, category: "technical" },
+  { name: "On/Off Page SEO", percentage: 50, category: "technical" },
 ];
 
 export const experience: ExperienceItem[] = [
@@ -108,5 +108,44 @@ export const education: EducationItem[] = [
     period: "2015",
     description:
       "Completed Matriculation with a solid academic foundation in core subjects. Developed discipline, analytical thinking, and a passion for learning.",
+  },
+];
+
+export interface Hobby {
+  name: string;
+  icon: string;
+  description: string;
+}
+
+export const hobbies: Hobby[] = [
+  {
+    name: "Chess",
+    icon: "fa-puzzle-piece",
+    description: "Sharpening strategic thinking and patience one move at a time.",
+  },
+  {
+    name: "Cricket",
+    icon: "fa-bullseye",
+    description: "Playing and following the game — teamwork, focus, and the love of sport.",
+  },
+  {
+    name: "Gym",
+    icon: "fa-male",
+    description: "Staying consistent with training to keep energy and discipline high.",
+  },
+  {
+    name: "Fitness",
+    icon: "fa-heartbeat",
+    description: "Building healthy habits that fuel productivity in and out of work.",
+  },
+  {
+    name: "Table Tennis",
+    icon: "fa-circle-o",
+    description: "Fast reflexes, quick decisions — a perfect mental reset after coding.",
+  },
+  {
+    name: "Learning New Tech",
+    icon: "fa-laptop",
+    description: "Exploring new frameworks, tools, and ideas to stay ahead of the curve.",
   },
 ];
