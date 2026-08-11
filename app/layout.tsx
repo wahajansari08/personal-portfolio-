@@ -27,7 +27,7 @@ const openSans = Open_Sans({
 
 export const metadata: Metadata = {
   title: "Portfolio",
-  description: "Tunis- Personal Portfolio NextJS Template",
+  description: "Wahaj- Personal Portfolio NextJS Template",
 };
 
 export default function RootLayout({

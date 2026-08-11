@@ -8,9 +8,9 @@ export const contactInfo: ContactInfo[] = [
   },
   {
     label: "mail me",
-    value: "hello@wahaj.pk",
+    value: "wahajansari08@gmail.com",
     icon: "fa-envelope-open",
-    href: "mailto:hello@wahaj.pk",
+    href: "mailto:wahajansari08@gmail.com",
   },
   {
     label: "call me",

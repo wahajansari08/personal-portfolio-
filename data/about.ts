@@ -119,6 +119,11 @@ export interface Hobby {
 
 export const hobbies: Hobby[] = [
   {
+    name: "Learning New Tech",
+    icon: "fa-laptop",
+    description: "Exploring new frameworks, tools, and ideas to stay ahead of the curve.",
+  },
+  {
     name: "Chess",
     icon: "fa-puzzle-piece",
     description: "Sharpening strategic thinking and patience one move at a time.",
@@ -142,10 +147,5 @@ export const hobbies: Hobby[] = [
     name: "Table Tennis",
     icon: "fa-circle-o",
     description: "Fast reflexes, quick decisions — a perfect mental reset after coding.",
-  },
-  {
-    name: "Learning New Tech",
-    icon: "fa-laptop",
-    description: "Exploring new frameworks, tools, and ideas to stay ahead of the curve.",
   },
 ];

@@ -1,4 +1,4 @@
-# Tunis template — content & customization guide
+# Wahaj template — content & customization guide
 
 This project is a **Next.js** portfolio. There is **no built-in admin or upload UI**. You change copy, lists, and media by **editing TypeScript data files** and **adding files under `public/`**.
 

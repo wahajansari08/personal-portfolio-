@@ -3,7 +3,7 @@ import type { ContactFormData } from "@/types";
 
 const WEB3FORMS_URL = "https://api.web3forms.com/submit";
 
-export async function POST(req: NextRequest): Promise<NextResponse> {
+export async function POST(req: NextRequest) {
   const accessKey = process.env.WEB3FORMS_ACCESS_KEY?.trim();
 
   if (!accessKey) {
@@ -12,9 +12,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         success: false,
         code: "NO_ACCESS_KEY",
         message:
-          "Email is not configured yet. Add WEB3FORMS_ACCESS_KEY to your environment (get a free key at https://web3forms.com), then restart the dev server.",
+          "Email is not configured yet. Add WEB3FORMS_ACCESS_KEY to your environment.",
       },
-      { status: 503 },
+      { status: 503 }
     );
   }
 
@@ -23,16 +23,23 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
     if (!body.name || !body.email || !body.subject || !body.message) {
       return NextResponse.json(
-        { success: false, error: "Missing required fields" },
-        { status: 400 },
+        {
+          success: false,
+          error: "Missing required fields",
+        },
+        { status: 400 }
       );
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(body.email)) {
+
+    if (!emailRegex.test(body.email.trim())) {
       return NextResponse.json(
-        { success: false, error: "Invalid email format" },
-        { status: 400 },
+        {
+          success: false,
+          error: "Invalid email format",
+        },
+        { status: 400 }
       );
     }
 
@@ -42,7 +49,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       email: body.email.trim(),
       subject: body.subject.trim(),
       message: body.message.trim(),
-      from_name: "Portfolio contact form",
+      from_name: "Portfolio Contact Form",
     };
 
     const upstream = await fetch(WEB3FORMS_URL, {
@@ -54,45 +61,57 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       body: JSON.stringify(payload),
     });
 
-    const raw = (await upstream.text()) as string;
-    let parsed: { success?: boolean; message?: string } = {};
+    const raw = await upstream.text();
+
+    console.log("Web3Forms status:", upstream.status);
+    console.log("Web3Forms response:", raw);
+
+    let parsed: {
+      success?: boolean;
+      message?: string;
+    };
+
     try {
-      parsed = JSON.parse(raw) as { success?: boolean; message?: string };
+      parsed = JSON.parse(raw);
     } catch {
       return NextResponse.json(
         {
           success: false,
-          error: "Unexpected response from email service.",
+          error: "Web3Forms returned an invalid response.",
+          debug:
+            process.env.NODE_ENV === "development" ? raw : undefined,
         },
-        { status: 502 },
+        { status: 502 }
       );
     }
 
-    if (!upstream.ok || parsed.success === false) {
+    if (!upstream.ok || parsed.success !== true) {
       return NextResponse.json(
         {
           success: false,
           error:
-            typeof parsed.message === "string"
-              ? parsed.message
-              : "Could not send message. Try again later.",
+            parsed.message ||
+            "Web3Forms could not send the message.",
         },
-        { status: upstream.ok ? 400 : upstream.status },
+        { status: upstream.ok ? 400 : upstream.status }
       );
     }
 
     return NextResponse.json({
       success: true,
       message:
-        typeof parsed.message === "string" && parsed.message.length > 0
-          ? parsed.message
-          : "Thank you — your message was sent.",
+        parsed.message ||
+        "Thank you — your message was sent successfully.",
     });
-  } catch (e) {
-    console.error("Contact form error:", e);
+  } catch (error) {
+    console.error("Contact form error:", error);
+
     return NextResponse.json(
-      { success: false, error: "Internal server error" },
-      { status: 500 },
+      {
+        success: false,
+        error: "Internal server error",
+      },
+      { status: 500 }
     );
   }
 }
