@@ -19,30 +19,63 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const body: ContactFormData = await req.json();
+    const body = (await req.json()) as ContactFormData;
 
-    if (!body.name || !body.email || !body.subject || !body.message) {
+    // Validate required fields
+    if (!body.name?.trim()) {
       return NextResponse.json(
         {
           success: false,
-          error: "Missing required fields",
+          error: "Name is required.",
         },
         { status: 400 }
       );
     }
 
+    if (!body.email?.trim()) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Email is required.",
+        },
+        { status: 400 }
+      );
+    }
+
+    if (!body.subject?.trim()) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Subject is required.",
+        },
+        { status: 400 }
+      );
+    }
+
+    if (!body.message?.trim()) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Message is required.",
+        },
+        { status: 400 }
+      );
+    }
+
+    // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(body.email.trim())) {
       return NextResponse.json(
         {
           success: false,
-          error: "Invalid email format",
+          error: "Please enter a valid email address.",
         },
         { status: 400 }
       );
     }
 
+    // Web3Forms payload
     const payload = {
       access_key: accessKey,
       name: body.name.trim(),
@@ -51,6 +84,8 @@ export async function POST(req: NextRequest) {
       message: body.message.trim(),
       from_name: "Portfolio Contact Form",
     };
+
+    console.log("Sending contact form to Web3Forms...");
 
     const upstream = await fetch(WEB3FORMS_URL, {
       method: "POST",
@@ -61,42 +96,56 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify(payload),
     });
 
+    // Get response as text first
     const raw = await upstream.text();
 
     console.log("Web3Forms status:", upstream.status);
     console.log("Web3Forms response:", raw);
 
+    // Try to parse JSON
     let parsed: {
       success?: boolean;
       message?: string;
+      error?: string;
     };
 
     try {
       parsed = JSON.parse(raw);
-    } catch {
+    } catch (parseError) {
+      console.error("Failed to parse Web3Forms response:", parseError);
+
       return NextResponse.json(
         {
           success: false,
-          error: "Web3Forms returned an invalid response.",
+          error: "Unexpected response from email service.",
           debug:
-            process.env.NODE_ENV === "development" ? raw : undefined,
+            process.env.NODE_ENV === "development"
+              ? raw
+              : undefined,
         },
         { status: 502 }
       );
     }
 
+    // Web3Forms returned an error
     if (!upstream.ok || parsed.success !== true) {
+      console.error("Web3Forms error:", parsed);
+
       return NextResponse.json(
         {
           success: false,
           error:
             parsed.message ||
+            parsed.error ||
             "Web3Forms could not send the message.",
         },
-        { status: upstream.ok ? 400 : upstream.status }
+        {
+          status: upstream.ok ? 400 : upstream.status,
+        }
       );
     }
 
+    // Success
     return NextResponse.json({
       success: true,
       message:
@@ -109,7 +158,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        error: "Internal server error",
+        error: "Internal server error.",
       },
       { status: 500 }
     );
