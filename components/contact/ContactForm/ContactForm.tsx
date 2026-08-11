@@ -1,7 +1,7 @@
 "use client";
 import { Reveal } from "@/components/motion";
 import { useState } from "react";
-import type { ContactFormData } from "@/types";
+// import type { ContactFormData } from "@/types";
 
 type FormStatus =
   | { type: "idle" }
@@ -9,12 +9,12 @@ type FormStatus =
   | { type: "error"; message: string };
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<FormStatus>({ type: "idle" });
 
@@ -28,64 +28,87 @@ export default function ContactForm() {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setStatus({ type: "idle" });
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+  setIsSubmitting(true);
+  setStatus({ type: "idle" });
 
-      const result = (await response.json()) as {
-        success?: boolean;
-        code?: string;
-        message?: string;
-        error?: string;
-      };
+  try {
+    const accessKey =
+      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
 
-      if (result.code === "NO_ACCESS_KEY") {
-        setStatus({
-          type: "error",
-          message:
-            result.message ??
-            "Add WEB3FORMS_ACCESS_KEY to your environment (see https://web3forms.com).",
-        });
-        return;
-      }
-
-      if (response.ok && result.success) {
-        setStatus({
-          type: "success",
-          message:
-            result.message ??
-            "Thank you — your message was sent. We will get back to you soon.",
-        });
-        setFormData({ name: "", email: "", subject: "", message: "" });
-        return;
-      }
-
+    if (!accessKey) {
       setStatus({
         type: "error",
         message:
-          result.error ??
-          result.message ??
-          "Something went wrong. Please try again.",
+          "Email service is not configured. Please try again later.",
       });
-    } catch {
-      setStatus({
-        type: "error",
-        message: "Network error. Check your connection and try again.",
-      });
-    } finally {
-      setIsSubmitting(false);
+      return;
     }
-  };
+
+    const response = await fetch(
+      "https://api.web3forms.com/submit",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          subject: formData.subject.trim(),
+          message: formData.message.trim(),
+          from_name: "Portfolio Contact Form",
+        }),
+      }
+    );
+
+    const result = (await response.json()) as {
+      success?: boolean;
+      message?: string;
+      error?: string;
+    };
+
+    if (response.ok && result.success) {
+      setStatus({
+        type: "success",
+        message:
+          result.message ??
+          "Thank you — your message was sent. We will get back to you soon.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+
+      return;
+    }
+
+    setStatus({
+      type: "error",
+      message:
+        result.error ??
+        result.message ??
+        "Something went wrong. Please try again.",
+    });
+  } catch (error) {
+    console.error("Contact form error:", error);
+
+    setStatus({
+      type: "error",
+      message:
+        "Network error. Check your connection and try again.",
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <Reveal className="col-12 col-lg-7 contact-form-column" delay={0.1}>

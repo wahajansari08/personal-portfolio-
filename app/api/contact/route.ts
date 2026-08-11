@@ -4,78 +4,50 @@ import type { ContactFormData } from "@/types";
 const WEB3FORMS_URL = "https://api.web3forms.com/submit";
 
 export async function POST(req: NextRequest) {
-  const accessKey = process.env.WEB3FORMS_ACCESS_KEY?.trim();
-
-  if (!accessKey) {
-    return NextResponse.json(
-      {
-        success: false,
-        code: "NO_ACCESS_KEY",
-        message:
-          "Email is not configured yet. Add WEB3FORMS_ACCESS_KEY to your environment.",
-      },
-      { status: 503 }
-    );
-  }
-
   try {
+    const accessKey = process.env.WEB3FORMS_ACCESS_KEY?.trim();
+
+    if (!accessKey) {
+      return NextResponse.json(
+        {
+          success: false,
+          code: "NO_ACCESS_KEY",
+          message:
+            "WEB3FORMS_ACCESS_KEY is not configured.",
+        },
+        { status: 503 }
+      );
+    }
+
     const body = (await req.json()) as ContactFormData;
 
-    // Validate required fields
-    if (!body.name?.trim()) {
+    if (
+      !body.name?.trim() ||
+      !body.email?.trim() ||
+      !body.subject?.trim() ||
+      !body.message?.trim()
+    ) {
       return NextResponse.json(
         {
           success: false,
-          error: "Name is required.",
+          error: "All fields are required.",
         },
         { status: 400 }
       );
     }
 
-    if (!body.email?.trim()) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Email is required.",
-        },
-        { status: 400 }
-      );
-    }
-
-    if (!body.subject?.trim()) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Subject is required.",
-        },
-        { status: 400 }
-      );
-    }
-
-    if (!body.message?.trim()) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: "Message is required.",
-        },
-        { status: 400 }
-      );
-    }
-
-    // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!emailRegex.test(body.email.trim())) {
       return NextResponse.json(
         {
           success: false,
-          error: "Please enter a valid email address.",
+          error: "Invalid email address.",
         },
         { status: 400 }
       );
     }
 
-    // Web3Forms payload
     const payload = {
       access_key: accessKey,
       name: body.name.trim(),
@@ -85,39 +57,69 @@ export async function POST(req: NextRequest) {
       from_name: "Portfolio Contact Form",
     };
 
-    console.log("Sending contact form to Web3Forms...");
-
-    const upstream = await fetch(WEB3FORMS_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(payload),
+    console.log("=================================");
+    console.log("Web3Forms URL:", WEB3FORMS_URL);
+    console.log("Access key exists:", Boolean(accessKey));
+    console.log("Payload:", {
+      ...payload,
+      access_key: "[HIDDEN]",
     });
+    console.log("=================================");
 
-    // Get response as text first
-    const raw = await upstream.text();
+    let response: Response;
 
-    console.log("Web3Forms status:", upstream.status);
-    console.log("Web3Forms response:", raw);
+    try {
+      response = await fetch(WEB3FORMS_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (fetchError) {
+      console.error("WEB3FORMS FETCH ERROR:", fetchError);
 
-    // Try to parse JSON
-    let parsed: {
+      return NextResponse.json(
+        {
+          success: false,
+          error: "Could not connect to Web3Forms.",
+          debug:
+            process.env.NODE_ENV === "development"
+              ? fetchError instanceof Error
+                ? fetchError.message
+                : String(fetchError)
+              : undefined,
+        },
+        { status: 502 }
+      );
+    }
+
+    console.log("Web3Forms HTTP status:", response.status);
+    console.log(
+      "Web3Forms content-type:",
+      response.headers.get("content-type")
+    );
+
+    const raw = await response.text();
+
+    console.log("Web3Forms RAW RESPONSE:", raw);
+
+    let result: {
       success?: boolean;
       message?: string;
       error?: string;
     };
 
     try {
-      parsed = JSON.parse(raw);
+      result = JSON.parse(raw);
     } catch (parseError) {
-      console.error("Failed to parse Web3Forms response:", parseError);
+      console.error("WEB3FORMS JSON PARSE ERROR:", parseError);
 
       return NextResponse.json(
         {
           success: false,
-          error: "Unexpected response from email service.",
+          error: "Web3Forms returned an unexpected response.",
           debug:
             process.env.NODE_ENV === "development"
               ? raw
@@ -127,38 +129,39 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Web3Forms returned an error
-    if (!upstream.ok || parsed.success !== true) {
-      console.error("Web3Forms error:", parsed);
+    console.log("Web3Forms parsed result:", result);
 
+    if (!response.ok || result.success !== true) {
       return NextResponse.json(
         {
           success: false,
           error:
-            parsed.message ||
-            parsed.error ||
-            "Web3Forms could not send the message.",
+            result.message ||
+            result.error ||
+            "Web3Forms rejected the submission.",
         },
         {
-          status: upstream.ok ? 400 : upstream.status,
+          status: response.status || 400,
         }
       );
     }
 
-    // Success
     return NextResponse.json({
       success: true,
       message:
-        parsed.message ||
+        result.message ||
         "Thank you — your message was sent successfully.",
     });
   } catch (error) {
-    console.error("Contact form error:", error);
+    console.error("CONTACT API ERROR:", error);
 
     return NextResponse.json(
       {
         success: false,
-        error: "Internal server error.",
+        error:
+          error instanceof Error
+            ? error.message
+            : "Unable to send your message.",
       },
       { status: 500 }
     );
