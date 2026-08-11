@@ -40,7 +40,7 @@ export const personalInfo: {
     { label: "last name", value: "Ansari" },
     { label: "Nationality", value: "Pakistani" },
     { label: "Address", value: "Karachi, Pakistan" },
-    { label: "Email", value: "wahajansar08@gmail.com" },
+    { label: "Email", value: "wahajansari08@gmail.com" },
     { label: "langages", value: "Urdu, English" },
   ],
 };
