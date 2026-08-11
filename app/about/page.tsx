@@ -3,6 +3,7 @@ import AboutHero from "@/components/about/AboutHero/AboutHero";
 import Skills from "@/components/about/Skills/Skills";
 import Experience from "@/components/about/Experience/Experience";
 import Education from "@/components/about/Education/Education";
+import Hobbies from "@/components/about/Hobbies/Hobbies";
 import { Reveal } from "@/components/motion";
 
 export const metadata: Metadata = {
@@ -30,6 +31,8 @@ export default function AboutPage() {
           <Education />
         </div>
       </div>
+      <hr className="separator mt-1" />
+      <Hobbies />
     </main>
   );
 }

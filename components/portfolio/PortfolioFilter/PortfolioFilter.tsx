@@ -26,11 +26,14 @@ const FILTER_TABS: { key: PortfolioFilterTab; label: string }[] = [
   { key: "nextjs", label: "Next JS" },
   { key: "wordpress", label: "WordPress" },
   { key: "shopify", label: "Shopify" },
+  { key: "seo", label: "SEO" },
 ];
 
 function ProjectMedia({ project }: { project: Project }): ReactElement {
   const type = project.projectType ?? "image";
   const slides = project.sliderImages ?? [];
+  // popupImage is the tall/full screenshot; fall back to thumbnail if not set
+  const popupSrc = project.popupImage ?? project.image;
 
   if (type === "youtube" && project.youtubeEmbedUrl) {
     return (
@@ -58,10 +61,9 @@ function ProjectMedia({ project }: { project: Project }): ReactElement {
   }
 
   if (type === "slider" && slides.length > 0) {
-    const firstSlide = slides[0];
     return (
       <Image
-        src={firstSlide}
+        src={slides[0]}
         alt=""
         width={900}
         height={600}
@@ -74,7 +76,7 @@ function ProjectMedia({ project }: { project: Project }): ReactElement {
     return (
       <div className="popup-scroll-image-wrap">
         <Image
-          src={project.image}
+          src={popupSrc}
           alt={project.title}
           width={900}
           height={2400}
@@ -85,9 +87,10 @@ function ProjectMedia({ project }: { project: Project }): ReactElement {
     );
   }
 
+  // default: plain static image — use popupImage if available, else thumbnail
   return (
     <Image
-      src={project.image}
+      src={popupSrc}
       alt={project.title}
       width={900}
       height={600}
@@ -152,7 +155,6 @@ function PortfolioGridTile({
 }
 
 function SlideshowFigcaption({ project }: { project: Project }): ReactElement {
-  const link = project.link ?? "www.envato.com";
   return (
     <figcaption>
       <h3>{project.title}</h3>
@@ -169,7 +171,7 @@ function SlideshowFigcaption({ project }: { project: Project }): ReactElement {
         </div>
         <div className="col-12 col-sm-6 mb-2">
           <i className="fa fa-code pr-2"></i>
-          <span className="project-label">Langages </span>:{" "}
+          <span className="project-label">Stack </span>:{" "}
           <span className="ft-wt-600 uppercase">
             {(project.tags ?? []).join(", ")}
           </span>
@@ -177,11 +179,7 @@ function SlideshowFigcaption({ project }: { project: Project }): ReactElement {
         <div className="col-12 col-sm-6 mb-2">
           <i className="fa fa-external-link pr-2"></i>
           <span className="project-label">Preview </span>:{" "}
-          <span className="ft-wt-600 uppercase">
-            <a href={`https://${link}`} target="_blank" rel="noreferrer">
-              {link}
-            </a>
-          </span>
+          <span className="ft-wt-600">Available On Request</span>
         </div>
       </div>
     </figcaption>

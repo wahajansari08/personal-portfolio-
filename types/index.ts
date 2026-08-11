@@ -77,7 +77,8 @@ export type PortfolioFilterTab =
   | "all"
   | "nextjs"
   | "wordpress"
-  | "shopify";
+  | "shopify"
+  | "seo";
 
 export type PortfolioProjectType = "image" | "youtube" | "slider" | "local-video" | "scrollable-image";
 
@@ -85,14 +86,17 @@ export interface Project {
   id: number;
   title: string;
   category: string;
-  /** Used by portfolio filter bar (ALL / LOGO / VIDEO / …) */
+  /** Used by portfolio filter bar (ALL / Next JS / WordPress / Shopify) */
   filterCategory: PortfolioFilterTab;
-  /** Detail panel layout: image, YouTube embed, slider, or local MP4 */
+  /** Detail panel layout: image, scrollable-image, YouTube embed, slider, or local MP4 */
   projectType?: PortfolioProjectType;
   youtubeEmbedUrl?: string;
   videoSrc?: string;
   sliderImages?: string[];
+  /** Thumbnail shown in the grid */
   image: string;
+  /** Full / tall image shown inside the popup. Falls back to `image` if omitted. */
+  popupImage?: string;
   slug: string;
   client: string;
   year: string;
