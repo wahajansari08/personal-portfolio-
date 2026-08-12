@@ -3115,3 +3115,23 @@ body.light .hobby-card h6 {
 body.light .hobby-desc {
   color: #666;
 }
+
+/* ── Blog post body: lists ───────────────────────────────────────────────── */
+.blog-excerpt ul,
+.blog-excerpt ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.1rem;
+}
+
+.blog-excerpt ul li,
+.blog-excerpt ol li {
+  color: #ddd;
+  font-weight: 400;
+  line-height: 1.75;
+  margin-bottom: 0.35rem;
+}
+
+body.light .blog-excerpt ul li,
+body.light .blog-excerpt ol li {
+  color: #444;
+}
