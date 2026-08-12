@@ -22,7 +22,7 @@ export const blogPosts: BlogPost[] = [
     listDate: "12 Jan, 2026",
     category: "web design, business, development",
     excerpt:
-      "Building a business website can look straightforward from the outside — a few pages, some images, a contact form. The difficult part is making the right decisions before development starts.",
+      "Building a business website can look straightforward from the outside — a few pages, some images, a contact form. The difficult part is making the right decisions before starts.",
     image: "/img/blog/blog-post-1.webp",
     author: "Wahaj Ansari",
     readTime: "5 min read",
@@ -335,7 +335,7 @@ export const blogPosts: BlogPost[] = [
     listDate: "9 Feb, 2026",
     category: "development, strategy, web design",
     excerpt:
-      "Every website project is different, but having a process makes things much easier. It gives both the developer and the client a clear idea of what happens next.",
+      "Every project is different, but having a process makes things much easier. It gives both the dev and the client a clear idea of what happens next.",
     image: "/img/blog/blog-post-5.webp",
     author: "Wahaj Ansari",
     readTime: "5 min read",
@@ -423,7 +423,7 @@ export const blogPosts: BlogPost[] = [
     listDate: "16 Feb, 2026",
     category: "development, strategy, Next.js",
     excerpt:
-      "There are a lot of technologies available today. But when I start a project, popularity isn't the first thing I consider. The first question is: what does the business actually need?",
+      "There are many technologies today, but I don't choose based on popularity. I first ask: what does the business need?",
     image: "/img/blog/blog-post-6.webp",
     author: "Wahaj Ansari",
     readTime: "5 min read",
@@ -497,7 +497,7 @@ export const blogPosts: BlogPost[] = [
     listDate: "23 Feb, 2026",
     category: "development, strategy, business",
     excerpt:
-      "One question that comes up often is whether a business should build a simple website or invest in something more customized. My answer is usually: it depends on what the business actually needs.",
+      "The question is: should a business build a simple website or invest in something custom? My answer: it depends on what the business needs.",
     image: "/img/blog/blog-post-7.webp",
     author: "Wahaj Ansari",
     readTime: "5 min read",
