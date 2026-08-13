@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Open_Sans, Poppins } from "next/font/google";
+import Script from "next/script";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@/styles/skins/circle.css";
 import "@/styles/globals.css";
@@ -106,6 +107,20 @@ export default function RootLayout({
         {children}
         <Footer />
         <JsonLd schema={[personSchema(), webSiteSchema(), professionalServiceSchema()]} />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BVKDQ3PS7D"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-BVKDQ3PS7D');
+          `}
+        </Script>
       </body>
     </html>
   );
