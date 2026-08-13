@@ -2,27 +2,15 @@ import { SocialLink } from "@/types";
 
 export const socialLinks: SocialLink[] = [
   {
-    platform: "Facebook",
-    href: "#",
-    icon: "fa-facebook",
-    label: "Facebook",
+    platform: "Github",
+    href: "https://github.com/wahajansari08",
+    icon: "fa-github",
+    label: "Github",
   },
   {
-    platform: "Twitter",
-    href: "#",
-    icon: "fa-twitter",
-    label: "Twitter",
-  },
-  {
-    platform: "Youtube",
-    href: "#",
-    icon: "fa-youtube",
-    label: "Youtube",
-  },
-  {
-    platform: "Dribbble",
-    href: "#",
-    icon: "fa-dribbble",
-    label: "Dribbble",
+    platform: "LinkedIn",
+    href: "https://www.linkedin.com/in/wahajansari08/",
+    icon: "fa-linkedin",
+    label: "LinkedIn",
   },
 ];
